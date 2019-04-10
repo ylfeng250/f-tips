@@ -9,7 +9,7 @@
     <f-tips tip="左边提示" position="left" font-size="30px">
       <a href="#">left</a>
     </f-tips>
-    <f-tips tip="右边提示" position="right" font-color="red">
+    <f-tips tip="右边提示" position="right" font-color="red" font-size="20px">
       <a href="#">right</a>
     </f-tips>
   </div>

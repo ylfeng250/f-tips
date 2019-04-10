@@ -1,7 +1,7 @@
 <template>
   <div class="tip-box">
     <slot></slot>
-    <div class="tip" :style="styleObject" :position="position" data-color="#056">{{tip}}</div>
+    <div class="tip" :style="styleObject" :position="position">{{tip}}</div>
   </div>
 </template>
 
@@ -26,9 +26,12 @@
 }
 .tip::before {
   content: "";
+  font-size: 1em;
   border-width: 0.5em;
   border-style: solid; 
   position: absolute;
+  /* 设置颜色 */
+  border-color: transparent;
 }
 .tip-box:hover .tip{
   opacity: 1;
@@ -39,9 +42,9 @@
   left: 0;
 }
 .tip[position=top]::before {
-  transform: translateY(1.5em) scale(1, 1.5);
+  transform: translateY(1.6em) scale(1, 1.5);
   border-style: solid;
-  /* border-color: black transparent transparent  transparent; */
+  border-top-color: var(--arrow-color)
 }
 /* bottom */
 .tip[position=bottom] {
@@ -50,8 +53,9 @@
   left: 0;
 }
 .tip[position=bottom]::before {
-  transform: translateY(-1.1em) scale(1, 1.5);
-  border-color: transparent transparent black transparent;
+  transform: translateY(-1em) scale(1, 1.5);
+  border-style: solid;
+  border-bottom-color: var(--arrow-color)
 }
 /* left */
 .tip[position=left] {
@@ -60,11 +64,14 @@
   white-space:pre-wrap;
   word-wrap: break-word;
   top: 0; 
-  left: -2.5em;
+  left: -2.1em;
 }
 .tip[position=left]::before {
-  transform: translateX(1.3em);
-  border-color: transparent transparent transparent black;
+  white-space: nowrap;
+  word-wrap: none;
+  transform: translateX(1.2em) scale(1.5, 1);
+  border-style: solid;
+  border-left-color: var(--arrow-color)
 }
 /* right */
 .tip[position=right] {
@@ -73,11 +80,14 @@
   white-space:pre-wrap;
   word-wrap: break-word;
   top: 0; 
-  right: -2.5em;
+  right: -2.1em;
 }
 .tip[position=right]::before {
-  transform: translateX(-1.3em) scale(1.5, 1);
-  border-color: transparent black transparent transparent ;
+  white-space: nowrap;
+  word-wrap: none;
+  transform: translateX(-1.2em) scale(1.5, 1);
+  border-style: solid;
+  border-right-color: var(--arrow-color)
 }
 </style>
 
@@ -115,7 +125,8 @@ export default {
       return {
         fontSize:this.fontSize,
         background:this.backgroundColor,
-        color:this.fontColor
+        color:this.fontColor,
+        '--arrow-color':this.backgroundColor
       }
     }
   }
